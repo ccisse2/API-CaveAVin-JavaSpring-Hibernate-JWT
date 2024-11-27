@@ -171,7 +171,10 @@ public class TestRequetes {
 	//Test requette de la méthode findByRegion de BouteilleRepository
 	@Test
 	void testGetBouteillesParRegion() {
-		final List<Bouteille> bouteillesDeLaLoire = bouteilleRepository.findByRegion("Pays de la Loire"); // Nom exact
+		Region region = Region.builder()
+				.nom("Pays de la Loire")
+				.build();
+		final List<Bouteille> bouteillesDeLaLoire = bouteilleRepository.findByRegion(region); // Nom exact
 		assertThat(bouteillesDeLaLoire).hasSize(3); // Il y a bien 3 bouteilles
 		assertThat(bouteillesDeLaLoire).isNotEmpty();
 
@@ -192,7 +195,10 @@ public class TestRequetes {
 	//Test de la méthode findByCouleur de bouteilleRepository
 	@Test
     void testGetBouteillesParCouleur() {
-		final List<Bouteille> bouteillesBlanches = bouteilleRepository.findByCouleur("Blanc"); // Nom exact
+		Couleur couleur = Couleur.builder()
+				.nom("Blanc")
+				.build();
+		final List<Bouteille> bouteillesBlanches = bouteilleRepository.findByCouleur(couleur); // Nom exact
 		assertThat(bouteillesBlanches).hasSize(2); // Il y a bien 2 bouteilles
 		assertThat(bouteillesBlanches).isNotEmpty();
 		// Vérifiez les noms des bouteilles
